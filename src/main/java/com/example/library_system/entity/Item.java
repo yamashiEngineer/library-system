@@ -25,13 +25,13 @@ public class Item {
 //    @Min(value = 0, message = "0以上の数値を入力してください")
 //    private Integer amount;
 //
-//    @NotNull(message = "貸出日は必須です")
-//    private LocalDate rentalDate;
-//
-//    @NotNull(message = "返却期限日は必須です")
-//    private LocalDate returnDueDate;
-//
-//    private String status; // '貸出中', '返却済'
+    @NotNull(message = "貸出日は必須です")
+    private LocalDate rentalDate;
+
+    @NotNull(message = "返却期限日は必須です")
+    private LocalDate returnDueDate;
+
+    private String status; // '貸出中', '返却済'
 
     // 日付が必要な場合は有効化
     // private LocalDate targetDate;
