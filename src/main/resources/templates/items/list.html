@@ -18,28 +18,32 @@
     <thead class="table-dark">
     <tr>
         <th>ID</th>
-        <th>名称</th>
-        <th>カテゴリ/区分</th>
-        <th>数値/金額</th>
+        <th>タイトル</th>
+        <th>貸出先名</th>
+        <th>貸出日</th>
+        <th>返却期限日</th>
+        <th>貸出状態</th>
         <th>操作</th>
     </tr>
     </thead>
-<!--    <tbody>-->
-<!--    <tr th:each="item : ${items}" th:classappend="${item.amount >= 10000} ? 'table-danger' : ''">-->
-<!--        <td th:text="${item.id}">1</td>-->
-<!--        <td th:text="${item.name}">サンプル名称</td>-->
-<!--        <td th:text="${item.category}">サンプルカテゴリ</td>-->
-<!--        <td th:text="${#numbers.formatInteger(item.amount, 1, 'COMMA')} + '円'">0円</td>-->
-<!--        <td>-->
-<!--            <div class="d-flex gap-2">-->
-<!--                <a th:href="@{/items/{id}/edit(id=${item.id})}" class="btn btn-sm btn-warning">編集</a>-->
-<!--                <form th:action="@{/items/{id}/delete(id=${item.id})}" method="post" onsubmit="return confirm('本当に削除しますか？');">-->
-<!--                    <button type="submit" class="btn btn-sm btn-danger">削除</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}">1</td>
+        <td th:text="${item.title}">サンプル名称</td>
+        <td th:text="${item.borrowerName}">サンプルカテゴリ</td>
+        <td th:text="${item.rentalDate}">サンプルカテゴリ</td>
+        <td th:text="${item.returnDueDate}">サンプルカテゴリ</td>
+        <td th:text="${item.status}">サンプルカテゴリ</td>
+        <td>
+            <div class="d-flex gap-2">
+                <a th:href="@{/items/{id}/edit(id=${item.id})}" class="btn btn-sm btn-warning">編集</a>
+                <form th:action="@{/items/{id}/delete(id=${item.id})}" method="post" onsubmit="return confirm('本当に削除しますか？');">
+                    <button type="submit" class="btn btn-sm btn-danger">削除</button>
+                </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
 </table>
 </body>
 </html>

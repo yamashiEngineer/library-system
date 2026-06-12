@@ -18,13 +18,9 @@ public class Item {
     @Size(max = 100, message = "名称は100文字以内で入力してください")
     private String title;
 
-    @NotBlank(message = "カテゴリ/ステータスは必須です")
+    @NotBlank(message = "貸出先名は必須です")
     private String borrowerName;
 
-//    @NotNull(message = "数値は必須入力です")
-//    @Min(value = 0, message = "0以上の数値を入力してください")
-//    private Integer amount;
-//
     @NotNull(message = "貸出日は必須です")
     private LocalDate rentalDate;
 
@@ -32,7 +28,4 @@ public class Item {
     private LocalDate returnDueDate;
 
     private String status; // '貸出中', '返却済'
-
-    // 日付が必要な場合は有効化
-    // private LocalDate targetDate;
 }
