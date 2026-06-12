@@ -8,6 +8,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/items")
 public class ItemController {
@@ -26,6 +29,13 @@ public class ItemController {
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
+        // ドロップダウンの選択肢を作成（キー: 送信される値, 値: 表示される文字）
+        Map<String, String> statusMap = new LinkedHashMap<>();
+        statusMap.put("貸出中", "貸出中");
+        statusMap.put("返却済", "返却済");
+
+        // フロント側（Thymeleaf）にデータを渡す
+        model.addAttribute("statusMap", statusMap);
         model.addAttribute("item", new Item());
         return "items/form";
     }

@@ -36,8 +36,14 @@
 
     <div class="mb-3">
         <label for="status" class="form-label">'貸出中' / '返却済'</label>
-        <input type="text" th:field="*{status}" class="form-control" th:errorclass="is-invalid" id="status">
-        <div class="invalid-feedback" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">エラーメッセージ</div>
+        <select id="status" th:field="*{status}">
+            <option value="">-- 選択してください --</option>
+
+            <option th:each="status : ${statusMap}"
+                    th:value="${status.key}"
+                    th:text="${status.value}">
+            </option>
+        </select>
     </div>
 
     <div class="mt-4">
