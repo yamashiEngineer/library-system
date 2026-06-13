@@ -16,8 +16,14 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<Item> findAll() {
-        return itemRepository.findAllByOrderByIdDesc();
+    // id の降順（値が大きい順・新しい順）で、すべてのデータを取得する場合
+//    public List<Item> findAll() {
+//        return itemRepository.findAllByOrderByIdDesc();
+//    }
+
+    // 「貸出中」のデータを期限が古い順に取得するサービスメソッド
+    public List<Item> findActiveRentals() {
+        return itemRepository.findByStatusOrderByReturnDueDateAsc("貸出中");
     }
 
     public Item findById(Long id) {

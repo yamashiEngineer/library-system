@@ -1,6 +1,9 @@
 package com.example.library_system.controller;
 
 import com.example.library_system.entity.Item;
+import com.example.library_system.repository.ItemRepository;
+import lombok.RequiredArgsConstructor;
+import java.util.List;
 import com.example.library_system.service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +16,19 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/items")
+@RequiredArgsConstructor
 public class ItemController {
-
+    private final ItemRepository itemRepository;
     private final ItemService itemService;
-
-    public ItemController(ItemService itemService) {
-        this.itemService = itemService;
-    }
 
     @GetMapping
     public String list(Model model) {
-        model.addAttribute("items", itemService.findAll());
+        // 「貸出中」のレコードのみを、期限日の昇順で取得
+        List<Item> rentals = itemService.findActiveRentals();
+        model.addAttribute("items", rentals);
+
+        // id の降順（値が大きい順・新しい順）で、すべてのデータを取得する場合
+//        model.addAttribute("items", itemService.findAll());
         return "items/list";
     }
 
