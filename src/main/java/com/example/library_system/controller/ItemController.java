@@ -21,6 +21,15 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
 
+    // このコントローラー内の全メソッドが呼ばれる前に、自動でModelに"statusMap"が追加されます
+    @ModelAttribute("statusMap")
+    public Map<String, String> setupStatusMap() {
+        Map<String, String> statusMap = new LinkedHashMap<>();
+        statusMap.put("貸出中", "貸出中");
+        statusMap.put("返却済", "返却済");
+        return statusMap;
+    }
+
     @GetMapping
     public String list(Model model) {
         // 「貸出中」のレコードのみを、期限日の昇順で取得
@@ -34,13 +43,6 @@ public class ItemController {
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
-        // ドロップダウンの選択肢を作成（キー: 送信される値, 値: 表示される文字）
-        Map<String, String> statusMap = new LinkedHashMap<>();
-        statusMap.put("貸出中", "貸出中");
-        statusMap.put("返却済", "返却済");
-
-        // フロント側（Thymeleaf）にデータを渡す
-        model.addAttribute("statusMap", statusMap);
         model.addAttribute("item", new Item());
         return "items/form";
     }
