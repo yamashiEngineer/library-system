@@ -24,13 +24,13 @@
 
     <div class="mb-3">
         <label for="rentalDate" class="form-label">貸出日</label>
-        <input type="text" th:field="*{rentalDate}" class="form-control" th:errorclass="is-invalid" id="rentalDate" placeholder="2026/01/01">
+        <input type="date" th:field="*{rentalDate}" class="form-control" th:errorclass="is-invalid" id="rentalDate">
         <div class="invalid-feedback" th:if="${#fields.hasErrors('rentalDate')}" th:errors="*{rentalDate}">エラーメッセージ</div>
     </div>
 
     <div class="mb-3">
         <label for="returnDueDate" class="form-label">返却期限日</label>
-        <input type="text" th:field="*{returnDueDate}" class="form-control" th:errorclass="is-invalid" id="returnDueDate" placeholder="2026/01/08">
+        <input type="date" th:field="*{returnDueDate}" class="form-control" th:errorclass="is-invalid" id="returnDueDate">
         <div class="invalid-feedback" th:if="${#fields.hasErrors('returnDueDate')}" th:errors="*{returnDueDate}">エラーメッセージ</div>
     </div>
 

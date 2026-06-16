@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "books")
@@ -22,9 +24,11 @@ public class Item {
     private String borrowerName;
 
     @NotNull(message = "貸出日は必須です")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate rentalDate;
 
     @NotNull(message = "返却期限日は必須です")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate returnDueDate;
 
     private String status; // '貸出中', '返却済'
