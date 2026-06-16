@@ -43,4 +43,18 @@ public class Item {
         // returnDueDate（期限）が rentalDate（貸出日）より「前」であれば false（エラー）
         return !this.returnDueDate.isBefore(rentalDate);
     }
+
+    // 【追加】表示用：期限切れかつ貸出中かどうかを判定
+    // ※バリデーションではないのでアノテーションは不要です
+    public boolean isOverdue() {
+        if (this.returnDueDate == null || this.status == null) {
+            return false;
+        }
+
+        // 今日の日付を取得
+        LocalDate today = LocalDate.now();
+
+        // ステータスが「貸出中」かつ、今日の日付が返却期限日より「後」なら true
+        return "貸出中".equals(this.status) && today.isAfter(this.returnDueDate);
+    }
 }

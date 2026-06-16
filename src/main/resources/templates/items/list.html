@@ -27,7 +27,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="item : ${items}">
+    <tr th:each="item : ${items}" th:classappend="${item.overdue} ? 'table-danger' : ''">
         <td th:text="${item.id}"></td>
         <td th:text="${item.title}"></td>
         <td th:text="${item.borrowerName}"></td>
