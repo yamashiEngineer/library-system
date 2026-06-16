@@ -32,4 +32,15 @@ public class Item {
     private LocalDate returnDueDate;
 
     private String status; // '貸出中', '返却済'
+
+    // 【追加】相関チェック（返却期限日は貸出日以降か）
+    @AssertTrue(message = "返却期限日は貸出日以降の日付を指定してください")
+    public boolean isReturnDueDateValid() {
+        // どちらかが未入力の場合は、このメソッドではチェックしない（@NotNull等に任せる）
+        if (this.rentalDate == null || this.returnDueDate == null) {
+            return true;
+        }
+        // returnDueDate（期限）が rentalDate（貸出日）より「前」であれば false（エラー）
+        return !this.returnDueDate.isBefore(rentalDate);
+    }
 }

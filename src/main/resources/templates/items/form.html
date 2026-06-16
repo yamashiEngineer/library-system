@@ -22,6 +22,10 @@
         <div class="invalid-feedback" th:if="${#fields.hasErrors('borrowerName')}" th:errors="*{borrowerName}">エラーメッセージ</div>
     </div>
 
+    <div th:if="${#fields.hasErrors('returnDueDateValid')}" class="alert alert-danger" role="alert">
+        <span th:errors="*{returnDueDateValid}">エラーメッセージ</span>
+    </div>
+
     <div class="mb-3">
         <label for="rentalDate" class="form-label">貸出日<span class="text-danger">*</span></label>
         <input type="date" th:field="*{rentalDate}" class="form-control" th:errorclass="is-invalid" id="rentalDate">
