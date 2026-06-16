@@ -11,25 +11,25 @@
 <form th:action="${item.id == null} ? @{/items/new} : @{/items/{id}/edit(id=${item.id})}" th:object="${item}" method="post" class="mt-3" style="max-width: 600px;">
 
     <div class="mb-3">
-        <label for="title" class="form-label">タイトル</label>
+        <label for="title" class="form-label">タイトル<span class="text-danger">*</span></label>
         <input type="text" th:field="*{title}" class="form-control" th:errorclass="is-invalid" id="title" placeholder="海辺のカフカ">
         <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">エラーメッセージ</div>
     </div>
 
     <div class="mb-3">
-        <label for="borrowerName" class="form-label">貸出先名</label>
+        <label for="borrowerName" class="form-label">貸出先名<span class="text-danger">*</span></label>
         <input type="text" th:field="*{borrowerName}" class="form-control" th:errorclass="is-invalid" id="borrowerName" placeholder="ななし太郎">
         <div class="invalid-feedback" th:if="${#fields.hasErrors('borrowerName')}" th:errors="*{borrowerName}">エラーメッセージ</div>
     </div>
 
     <div class="mb-3">
-        <label for="rentalDate" class="form-label">貸出日</label>
+        <label for="rentalDate" class="form-label">貸出日<span class="text-danger">*</span></label>
         <input type="date" th:field="*{rentalDate}" class="form-control" th:errorclass="is-invalid" id="rentalDate">
         <div class="invalid-feedback" th:if="${#fields.hasErrors('rentalDate')}" th:errors="*{rentalDate}">エラーメッセージ</div>
     </div>
 
     <div class="mb-3">
-        <label for="returnDueDate" class="form-label">返却期限日</label>
+        <label for="returnDueDate" class="form-label">返却期限日<span class="text-danger">*</span></label>
         <input type="date" th:field="*{returnDueDate}" class="form-control" th:errorclass="is-invalid" id="returnDueDate">
         <div class="invalid-feedback" th:if="${#fields.hasErrors('returnDueDate')}" th:errors="*{returnDueDate}">エラーメッセージ</div>
     </div>
