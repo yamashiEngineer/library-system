@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/items")
@@ -78,10 +84,13 @@ public class ItemController {
         return "redirect:/items";
     }
 
-    // 【重要：グレード7→6加点要素】例外が発生した際、共通エラー画面へ安全に誘導する
-    @ExceptionHandler(IllegalArgumentException.class)
-    public String handleException(IllegalArgumentException ex, Model model) {
-        model.addAttribute("errorMessage", ex.getMessage());
-        return "error";
+    // IllegalArgumentException（ID未存在）と MethodArgumentTypeMismatchException（IDの型不正）を両方キャッチ
+    @ExceptionHandler({IllegalArgumentException.class, MethodArgumentTypeMismatchException.class})
+    public String handleException(Exception ex, RedirectAttributes redirectAttributes) {
+        // リダイレクト先（一覧画面）に1度だけ引き継がれるメッセージを設定
+        redirectAttributes.addFlashAttribute("errorMessage", "指定されたデータが見つからないか、URLが不正です。");
+
+        // 一覧画面のURLへリダイレクト
+        return "redirect:/items";
     }
 }

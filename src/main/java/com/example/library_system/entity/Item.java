@@ -24,11 +24,11 @@ public class Item {
     private String borrowerName;
 
     @NotNull(message = "貸出日は必須です")
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate rentalDate;
 
     @NotNull(message = "返却期限日は必須です")
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDueDate;
 
     private String status; // '貸出中', '返却済'
