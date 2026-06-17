@@ -16,7 +16,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "名称は必須入力です")
+    @NotBlank(message = "タイトルは必須入力です")
     @Size(max = 100, message = "名称は100文字以内で入力してください")
     private String title;
 
